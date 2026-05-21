@@ -52,4 +52,10 @@ $app->singleton(
 |
 */
 
+// Override paths for Vercel serverless (read-only filesystem, only /tmp is writable)
+if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || getenv('VERCEL')) {
+    $app->useStoragePath('/tmp/storage');
+    $app->bootstrapPath('/tmp/bootstrap-cache');
+}
+
 return $app;
