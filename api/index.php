@@ -13,7 +13,7 @@ $dirs = [
     '/tmp/storage/framework/cache',
     '/tmp/storage/framework/cache/data',
     '/tmp/storage/framework/sessions',
-    '/tmp/bootstrap-cache',
+    '/tmp/bootstrap-cache/cache',
 ];
 
 foreach ($dirs as $dir) {
