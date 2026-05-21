@@ -3,6 +3,7 @@
 // Vercel serverless has a read-only filesystem except /tmp
 // Redirect Laravel's writable paths to /tmp
 $_ENV['APP_STORAGE_PATH'] = '/tmp/storage';
+$_SERVER['SCRIPT_NAME'] = '/index.php';
 
 // Create required directories in /tmp
 $dirs = [
