@@ -12,8 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Pour MySQL, on doit utiliser une requête SQL brute pour modifier un ENUM
-        DB::statement("ALTER TABLE reservations MODIFY COLUMN statut ENUM('en_attente', 'confirmee', 'annulee', 'terminee') DEFAULT 'en_attente'");
+        if (DB::getDriverName() === 'mysql') {
+            // Pour MySQL, on doit utiliser une requête SQL brute pour modifier un ENUM
+            DB::statement("ALTER TABLE reservations MODIFY COLUMN statut ENUM('en_attente', 'confirmee', 'annulee', 'terminee') DEFAULT 'en_attente'");
+        }
     }
 
     /**
@@ -21,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement("ALTER TABLE reservations MODIFY COLUMN statut ENUM('en_attente', 'confirmee', 'annulee') DEFAULT 'en_attente'");
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement("ALTER TABLE reservations MODIFY COLUMN statut ENUM('en_attente', 'confirmee', 'annulee') DEFAULT 'en_attente'");
+        }
     }
 };
